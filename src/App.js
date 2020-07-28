@@ -1,11 +1,11 @@
 import React from "react";
 
+import Menu from "./components/Menu";
+
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>Hello, world!</p>
-            </header>
+        <div>
+            <Menu />
         </div>
     );
 }
