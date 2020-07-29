@@ -19,10 +19,9 @@ function Home() {
             />
 
             {data.categorias.map((category, index) => {
-                if (index === 0)
-                    return <Carousel ignoreFirstVideo category={category} />;
+                if (index === 0) return <Carousel key={category.titulo} ignoreFirstVideo category={category} />;
 
-                return <Carousel category={category} />;
+                return <Carousel key={category.titulo} category={category} />;
             })}
 
             <Footer />
