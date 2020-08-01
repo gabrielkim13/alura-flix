@@ -26,7 +26,6 @@ function CadastroCategoria() {
           event.preventDefault();
 
           setCategories([...categories, newCategory]);
-
           setNewCategory(initialValues);
         }}
       >
@@ -45,7 +44,7 @@ function CadastroCategoria() {
 
       <ul>
         {categories.map((category) => {
-          return <li key={`${category}`}>{JSON.stringify(category)}</li>;
+          return <li key={`${category.name}`}>{JSON.stringify(category)}</li>;
         })}
       </ul>
 
