@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 
 function CadastroCategoria() {
-  const initialValues = { name: '', description: '', color: '#000' };
+  const initialValues = { id: null, name: '', description: '', color: '#000' };
 
   const [categories, setCategories] = useState([]);
   const [newCategory, setNewCategory] = useState(initialValues);
+
+  useEffect(() => {
+    setTimeout(async () => {
+      const URL = 'http://localhost:3001/categorias';
+
+      const response = await fetch(URL);
+
+      if (!response.ok) throw new Error('Failed to fetch data!');
+
+      const dbCategories = await response.json();
+      setCategories([...dbCategories]);
+    }, 2000);
+  }, []);
 
   const handleChange = (event) => {
     setNewCategory({ ...newCategory, [event.target.getAttribute('name')]: event.target.value });
@@ -44,7 +57,7 @@ function CadastroCategoria() {
 
       <ul>
         {categories.map((category) => {
-          return <li key={`${category.name}`}>{JSON.stringify(category)}</li>;
+          return <li key={`${category.id}`}>{JSON.stringify(category)}</li>;
         })}
       </ul>
 
